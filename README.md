@@ -3,7 +3,7 @@
 my ctest_sample dashboard:
 https://my.cdash.org/index.php?project=ctest_sample
 
-Register dashboard step:
+## Register dashboard step:
 
 1. register user on dashborad:https://my.cdash.org/register 
 
@@ -11,18 +11,19 @@ Register dashboard step:
 
    sample: https://github.com/jeffbaumes/cdash-examples
 
-CMake file Config:
+## CMake file Config:
 
 add include(CTest) in the top CMakeLists.txt file.
 
 then add a file CTestConfig.cmake with such contents:
 
-set(CTEST_DROP_METHOD "http")
+set(CTEST_DROP_METHOD "http")\
+set(CTEST_DROP_SITE "my.cdash.org")\
+set(CTEST_DROP_LOCATION "/submit.php?project=ctest_sample")\
+set(CTEST_DROP_SITE_CDASH TRUE)\
 
-set(CTEST_DROP_SITE "my.cdash.org")
+## Run Test
+C:\csd\git_hub\CTestSample\build-x64>ctest -C release
 
-set(CTEST_DROP_LOCATION "/submit.php?project=ctest_sample")
-
-set(CTEST_DROP_SITE_CDASH TRUE)
-
-
+## Send to dashboard
+C:\csd\git_hub\CTestSample\build-x64>ctest -D Experimental -C release
